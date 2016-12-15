@@ -1,0 +1,8 @@
+C D         invalid
+I J         invalid
+K L         invalid
+G H   25    valid
+E F   40    valid
+M N   69    valid
+A B   188   valid
+z X   188   valid
