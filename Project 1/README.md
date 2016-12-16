@@ -23,7 +23,7 @@ Darth Vader wants to check that his TIE fighter pilots are patrolling adequately
 There will be no user interface for this program. All I/O will be performed with a files
 
 ## Input
-* All input will come from a file named pilot_routes.txt
+* All input will come from a file named `pilot_routes.txt`
 * Each line in the file will contain the pilot’s first name followed by a list of coordinates
 * There will be a new line after each line except for the last line
 * The pilot’s name will be a single word
@@ -34,9 +34,9 @@ There will be no user interface for this program. All I/O will be performed with
 * The first and last set of coordinates will always be the same. See the sample below
 
 ## Output
-* All output will be written to a file named pilot_areas.txt
+* All output will be written to a file named `pilot_areas.txt`
 * Output format:
-  * &lt;pilot name>&lt;tab>&lt;area>
+  * `<pilot name><tab><area>`
 * The area will be rounded to 2 decimal places
 * Each pilot’s data will be written on a separate line
 
