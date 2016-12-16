@@ -1,4 +1,4 @@
-# Project 2 - Whovian Complex Numbers
+# Project 2 Instructions - Whovian Complex Numbers
 ## Objectives
 * Implement basic class concepts in C++
 * Create different types of constructors
