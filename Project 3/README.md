@@ -1,4 +1,4 @@
-# Project 3 - *Tie Fighter Patrols Strike Back* Instructions
+# Project 3 Instructions - Tie Fighter Patrols Strike Back
 ## Objectives
 * Implement a linked list using classes in C++
 * Implement basic inheritance by creating a doubly linked list
