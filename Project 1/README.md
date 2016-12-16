@@ -1,4 +1,4 @@
-# Project 1 – Tie Fighter Patrols
+# Project 1 Instructions – Tie Fighter Patrols
 ## Objectives
 * Implement basic file I/O in C++
 * Manipulate single dimension arrays
