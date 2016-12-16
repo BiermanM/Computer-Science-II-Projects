@@ -119,7 +119,7 @@ There will be no user interface for this program. All I/O will be performed with
   * Each pilot’s data will be written on a separate line
 
 
-##*Extra Credit*: Implement a binary search
+## *Extra Credit*: Implement a binary search
 * The first command in the test case file will be a sort
 * All searches will be based on the previous sort command
 * Use pointers for left, right and middle
