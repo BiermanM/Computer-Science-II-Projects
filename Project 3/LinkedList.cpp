@@ -287,7 +287,7 @@ string LinkedList::searchFor(string str)
             for (int x = 0; x < middle; x++)
                 current = current->getNext();
 
-            if (current->getPatrolArea() == num)
+            if (abs(current->getPatrolArea() - num) < 0.001)
                   return str + " found";
             else if (current->getPatrolArea() > num)
                   right = middle - 1;
