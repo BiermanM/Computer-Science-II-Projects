@@ -31,7 +31,7 @@ public:
     void insert(DoubleLinkNode*);                                               // Insert DoubleLinkNode into list
     void sortList(string);                                                      // Sort list into ascending order alphabetically or numerically
     bool inOrder(string);                                                       // Checks if the list is currently in ascending order
-    ofstream& recursivePrint(ofstream&, DoubleLinkNode*);                       // Recursively prints the data for each DoubleLinkNode in the list, from first to last
+    ofstream& recursivePrint(ofstream&, DoubleLinkNode*, int);                  // Recursively prints the data for each DoubleLinkNode in the list, from first to last
     void recursiveDelete(DoubleLinkNode*);                                      // Recursively deletes all DoubleLinkNodes in the list, from last to first
     bool isGreaterThan(DoubleLinkNode*, DoubleLinkNode*, string);               // Checks if the first DoubleLinkNode is greater than the second DoubleLinkNode based on name or area
     bool isGreaterThanOrEqualTo(DoubleLinkNode*, DoubleLinkNode*, string);      // Checks if the first DoubleLinkNode is greater than or equal to the second DoubleLinkNode base on name or area
