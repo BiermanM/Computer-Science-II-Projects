@@ -135,7 +135,7 @@ string solveIndefinite(string str)
         if (s.substr(x, 2) == "/-")                                     // moves negative to outside the coefficient if it is
         {                                                               // part of the denominator
             s = s.substr(0, x).substr(0, s.substr(0, x).find_last_of('('))
-              + "-(" + s.substr(s.find('(') + 1, s.find('/') - (s.find('(') + 1))
+              + "-(" + s.substr(s.substr(0, x).find_last_of('(') + 1, x - s.substr(0, x).find_last_of('(') - 1)
               + "/" + s.substr(x + 2);
             x = 0;
         }
