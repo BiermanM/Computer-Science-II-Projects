@@ -56,8 +56,8 @@ void coordsIntoArray(double xCoords[], double yCoords[], string coords)
     int num = 0;
     while (coords.length() > 0)
     {
-        string temp;                                            // Temp becomes one coordinate pair, in the form "<xCoordinate>,<yCoordinate>"
-        if (coords.find(' ') == (unsigned) -1)                  // No need for using substring if it is the last coordinate pair in the string
+        string temp;                                                                                            // Temp becomes one coordinate pair, in the form "<xCoordinate>,<yCoordinate>"
+        if (coords.find(' ') == (unsigned) -1)                                                                  // No need for using substring if it is the last coordinate pair in the string
         {
             temp = coords;
             coords = "";
@@ -72,8 +72,8 @@ void coordsIntoArray(double xCoords[], double yCoords[], string coords)
         string tempY = "";
         bool foundComma = false;
 
-        for (int x = 0; x < (signed) temp.length(); x++)        // Sets tempX to everything before the comma
-        {                                                       // Sets tempY to everything after the comma
+        for (int x = 0; x < (signed) temp.length(); x++)                                                        // Sets tempX to everything before the comma
+        {                                                                                                       // Sets tempY to everything after the comma
             if(temp[x] == 44)
                 foundComma = true;
             else if (!foundComma)
@@ -82,10 +82,10 @@ void coordsIntoArray(double xCoords[], double yCoords[], string coords)
                 tempY += temp[x];
         }
 
-        xCoords[num] = atof(tempX.c_str());                     // Converts the substring to the left of the comma into a double
-        yCoords[num] = atof(tempY.c_str());                     // Converts the substring to the right of the comma into a double
+        xCoords[num] = atof(tempX.c_str());                                                                     // Converts the substring to the left of the comma into a double
+        yCoords[num] = atof(tempY.c_str());                                                                     // Converts the substring to the right of the comma into a double
 
-        num++;                                                  // Moves to the next element in both arrays
+        num++;                                                                                                  // Moves to the next element in both arrays
 
     }
 }
@@ -197,7 +197,7 @@ bool secondValidationCheck(string line)
 // Return: bool
 bool getCommandType(string line)
 {
-    // Returns true if the command is a sort, returns false if the command is a search
+                                                                                                                        // Returns true if the command is a sort, returns false if the command is a search
     return (line == "sort area" || line == "sort pilot");
 }
 
