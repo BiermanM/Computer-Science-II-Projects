@@ -193,12 +193,21 @@ ostream& operator<<(ostream& cout, const ComplexNumber& num)
             else if (num.getImaginaryNumberComponent() == -1)
                 cout << "-i";                                           // -i
             else
-                cout << num.getImaginaryNumberComponent() << "i";       // bi or -bi
+            {                                                                                   // bi or -bi
+                if (num.getImaginaryNumberComponent() == floor(num.getImaginaryNumberComponent()))
+                    cout << (int) num.getImaginaryNumberComponent() << "i";                     // if b is a whole number, don't display .00
+                else
+                    cout << num.getImaginaryNumberComponent() << "i";
+            }
         }
     }
     else
-    {
-        cout << num.getRealNumberComponent();                           // a or -a
+    {                                                                    // a or -a
+        if (num.getRealNumberComponent() == floor(num.getRealNumberComponent()))
+            cout << (int) num.getRealNumberComponent();                                         // if a is a whole number, don't display .00
+        else
+            cout << num.getRealNumberComponent();
+        
         if (num.getImaginaryNumberComponent() > 0)
             cout << "+";
 
@@ -207,7 +216,12 @@ ostream& operator<<(ostream& cout, const ComplexNumber& num)
         else if (num.getImaginaryNumberComponent() == 1)
             cout << "i";                                                // a+i or -a+i
         else if (num.getImaginaryNumberComponent() != 0)
-            cout << num.getImaginaryNumberComponent() << "i";           // a+bi or -a+bi
+        {                                                                                       // a+bi or -a+bi
+            if (num.getImaginaryNumberComponent() == floor(num.getImaginaryNumberComponent()))
+                cout << (int) num.getImaginaryNumberComponent() << "i";                         // if b is a whole number, don't display .00
+            else
+                cout << num.getImaginaryNumberComponent() << "i";
+        }
     }
     return cout;
 }
