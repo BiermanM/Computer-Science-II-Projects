@@ -16,7 +16,7 @@ using namespace std;
 // Parameters: none
 // Return: none
 DoubleLinkNode::DoubleLinkNode()
-               :BaseNode()      // calls the BaseNode's default constructor
+               :BaseNode()          // calls the BaseNode's default constructor
 {
     next = nullptr;
     prev = nullptr;
