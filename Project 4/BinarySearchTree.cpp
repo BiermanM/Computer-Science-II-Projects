@@ -191,7 +191,7 @@ string BinarySearchTree::appendTrig(string original, string trigList)
             if (result.substr(x, 2) == "/-")                                     // moves negative to outside the coefficient if it is
             {                                                                    // part of the denominator
                 result = result.substr(0, x).substr(0, result.substr(0, x).find_last_of('('))
-                  + "-(" + result.substr(result.find('(') + 1, result.find('/') - (result.find('(') + 1))
+                  + "-(" + result.substr(result.substr(0, x).find_last_of('(') + 1, x - result.substr(0, x).find_last_of('(') - 1)
                   + "/" + result.substr(x + 2);
                 x = 0;
             }
