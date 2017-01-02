@@ -186,7 +186,7 @@ bool secondValidationCheck(string line)
 
         if (hasNumbers == true && hasLetters == true)
             return false;
-        if (line[x] < 20 || (line[x] > 20 && line[x] < 45) || line[x] == 47 || (line[x] >= 58 && line[x] <= 64) || (line[x] >= 91 && line[x] <= 96) || line[x] > 122)
+        if (line[x] < 32 || (line[x] > 32 && line[x] < 45) || line[x] == 47 || (line[x] >= 58 && line[x] <= 64) || (line[x] >= 91 && line[x] <= 96) || line[x] > 122)
             return false;
     }
     return true;
