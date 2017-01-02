@@ -140,7 +140,7 @@ void LinkedList::sortList(string str)
         while(current->getNext() != nullptr && current <= current->getNext())                       // Finds a node where the node after it is smaller than it
             current = current->getNext();
 
-        if (current->getNext() != nullptr && current > current->getNext())                          // If the two nodes need to be swapped
+        if (current->getNext() != nullptr && ((current->getPatrolArea() > current->getNext()->getPatrolArea() && str == "area") || (current->getPilotName() > current->getNext()->getPilotName() && str == "pilot")))                          // If the two nodes need to be swapped
         {
             if (current->getPrev() == nullptr && current->getNext()->getNext() != nullptr)           // Swapping two nodes, one of which is the head of the list
             {
