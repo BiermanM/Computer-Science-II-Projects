@@ -159,7 +159,9 @@ bool secondValidationCheck(string line)
 {
     if (line == "sort area" || line == "sort pilot")                                                                    // Two of the valid commands are "sort area" and "sort pilot"
         return true;
-
+    else if (line.substr(0, 4) == "sort" || line == "search" || line.substr(0, 7) == "search ")                         // Using "sort" with any criteria other than "area" and "pilot" is not valid
+        return false;                                                                                                   // and using "search" to search is not valid
+    
     if (line.find('-') > 0 && line.find('-') < line.length())                                                           // A command can't have a minus sign that isn't the first character
         return false;                                                                                                   // A minus sign would mean that the command is to search for an area
 
