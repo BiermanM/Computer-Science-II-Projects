@@ -125,6 +125,17 @@ void LinkedList::sortList(string str)
     while(!isInOrder)                                                                               // While the list is not in order
     {
         current = head;
+        
+        if (str == "area")
+        {
+            while(current->getNext() != nullptr && current->getPatrolArea() <= current->getNext()->getPatrolArea()) // Finds a node where the node after it is smaller than it
+                current = current->getNext();
+        }
+        else
+        {
+            while(current->getNext() != nullptr && current->getPilotName() <= current->getNext()->getPilotName())   // Finds a node where the node after it is smaller than it
+                current = current->getNext();
+        }
 
         while(current->getNext() != nullptr && current <= current->getNext())                       // Finds a node where the node after it is smaller than it
             current = current->getNext();
