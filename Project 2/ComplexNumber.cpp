@@ -180,6 +180,8 @@ bool ComplexNumber::operator!=(const ComplexNumber& num) const
 // Return: stream insertion
 ostream& operator<<(ostream& cout, const ComplexNumber& num)
 {
+    cout << setprecision(2) << fixed;                                   // sets all floating point values to 2 decimal places
+
     if (num.getRealNumberComponent() == 0)
     {
         if (num.getImaginaryNumberComponent() == 0)
