@@ -129,7 +129,8 @@ string solveIndefinite(string str)
 
     for (unsigned int x = 0; x < s.length(); x++)
     {
-        if (x < s.length() - 1 && s[x] == '1' && s[x + 1] == 'x')       // converts all instances of 1x to x
+        if (x < s.length() - 1 && s[x] == '1' && s[x + 1] == 'x'        // converts all instances of 1x to x
+            && s[x - 1] == ' ')
             s = s.substr(0, x) + s.substr(x + 1);
         if (s.substr(x, 2) == "/-")                                     // moves negative to outside the coefficient if it is
         {                                                               // part of the denominator
