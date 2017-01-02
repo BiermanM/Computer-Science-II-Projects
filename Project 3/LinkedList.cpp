@@ -86,7 +86,15 @@ void LinkedList::setTail(DoubleLinkNode* n)
 // Return: output file stream
 ofstream& operator<<(ofstream& outFile, LinkedList& ll)
 {
-    return ll.recursivePrint(outFile, ll.getHead());
+    int longestName = 0;
+    DoubleLinkNode * current = ll.getHead();
+    while (current != nullptr)
+    {
+        if (current->getPilotName().length() > (unsigned) longestName)
+            longestName = current->getPilotName().length();
+        current = current->getNext();
+    }
+    return ll.recursivePrint(outFile, ll.getHead(), longestName + 2);
 }
 
 // Insert DoubleLinkNode into list
@@ -182,9 +190,9 @@ bool LinkedList::inOrder(string str)
 // Recursively prints the data for each DoubleLinkNode in the list, from first to last
 // Parameters: output file stream, DoubleLinkNode
 // Return: output file stream
-ofstream& LinkedList::recursivePrint(ofstream& outFile, DoubleLinkNode* n)
+ofstream& LinkedList::recursivePrint(ofstream& outFile, DoubleLinkNode* n, int columnLength)
 {
-    outFile << fixed << setprecision(2)                                 // All areas are rounded to two decimal places
+    outFile << fixed << setprecision(2) << left << setw(columnLength)   // All areas are rounded to two decimal places
          << n->getPilotName() << "\t" << n->getPatrolArea() << endl;    // Prints in the format of "<Name><Tab><Area>"
     if (n->getNext() != nullptr)
         recursivePrint(outFile, n->getNext());                          // Prints the next node until it reaches the end of the list
