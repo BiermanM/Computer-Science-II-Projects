@@ -31,13 +31,13 @@ bool verify(string str, bool isOperand)
 	{
 	    for (unsigned int index = 0; index < str.length(); index++)
         {
-            if (!(str[index] == '0' || str[index] == '1' || str[index] == '2' || str[index] == '3' || str[index] == '4'                             // verifies that the complex number contains only numbers, periods, plus signs, minus signs, and 'i's
+            if (!(str[index] == '0' || str[index] == '1' || str[index] == '2' || str[index] == '3' || str[index] == '4'                                 // verifies that the complex number contains only numbers, periods, plus signs, minus signs, and 'i's
                || str[index] == '5' || str[index] == '6' || str[index] == '7' || str[index] == '8' || str[index] == '9'
                || str[index] == '.' || str[index] == '+' || str[index] == '-' || str[index] == 'i'))
                 return false;
         }
 
-        if (str.find('i') < str.length() && str[str.length() - 1] != 'i')                                                                           // verifies any complex number that has an imaginary component does not have anything else after the 'i'
+        if (str.find('i') < str.length() && str[str.length() - 1] != 'i')                                                                               // verifies any complex number that has an imaginary component does not have anything else after the 'i'
             return false;
 
         return true;
@@ -74,31 +74,31 @@ bool noExtraPeriods(string str)
     if (str[0] == '-')
         str = str.substr(1);
     string strPart1, strPart2;
-    if (str.find('-') < str.length())               // If the real and imaginary numbers are separated by a minus sign
+    if (str.find('-') < str.length())                                                                                                             // If the real and imaginary numbers are separated by a minus sign
     {
         strPart1 = str.substr(0, str.find('-'));
         strPart2 = str.substr(str.find('-') + 1);
     }
-    else if (str.find('+') < str.length())          // If the real and imaginary numbers are separated by a plus sign
+    else if (str.find('+') < str.length())                                                                                                        // If the real and imaginary numbers are separated by a plus sign
     {
         strPart1 = str.substr(0, str.find('+'));
         strPart2 = str.substr(str.find('+') + 1);
     }
-    else                                            // If there is only a real number or only an imaginary number
+    else                                                                                                                                          // If there is only a real number or only an imaginary number
     {
         strPart1 = str;
         strPart2 = "";
     }
 
-    int periodCount1 = 0;                                               // counts the number of periods in the string
-    for (unsigned int index = 0; index < strPart1.length(); index++)    // uses unsigned int to prevent the error of comparing ints to unsigned ints
+    int periodCount1 = 0;                                                                                                                         // counts the number of periods in the string
+    for (unsigned int index = 0; index < strPart1.length(); index++)                                                                              // uses unsigned int to prevent the error of comparing ints to unsigned ints
     {
         if (strPart1[index] == '.')
             periodCount1++;
     }
 
-    int periodCount2 = 0;                                               // counts the number of periods in the string
-    for (unsigned int index = 0; index < strPart2.length(); index++)    // uses unsigned int to prevent the error of comparing ints to unsigned ints
+    int periodCount2 = 0;                                                                                                                         // counts the number of periods in the string
+    for (unsigned int index = 0; index < strPart2.length(); index++)                                                                              // uses unsigned int to prevent the error of comparing ints to unsigned ints
     {
         if (strPart2[index] == '.')
             periodCount2++;
@@ -113,57 +113,57 @@ bool noExtraPeriods(string str)
 
 int main()
 {
-    ifstream inFile("complex.txt");                                                                                     // Opens the input file "complex.txt"
+    ifstream inFile("complex.txt");                                                                                                               // Opens the input file "complex.txt"
 
-    if (inFile)                                                                                                         // Program will end if "complex.txt" cannot be found
+    if (inFile)                                                                                                                                   // Program will end if "complex.txt" cannot be found
     {
 	int longestEq = longestEquation(inFile);
 	
-        ofstream outFile("results.txt");                                                                                // Opens the output file "results.txt"
-        while (!inFile.eof())                                                                                           // loops until it reaches the end of the file
+        ofstream outFile("results.txt");                                                                                                          // Opens the output file "results.txt"
+        while (!inFile.eof())                                                                                                                     // loops until it reaches the end of the file
         {
             string line, operand, originalLine;
             ComplexNumber firstComplexNumber, secondComplexNumber;
-            getline(inFile, line);                                                                                      // gets the entire line from the input
+            getline(inFile, line);                                                                                                                // gets the entire line from the input
             originalLine = line;
 
-            int spaceCount = 0;                                                                                         // counts the number of spaces in the string
-            for (unsigned int index = 0; index < line.length(); index++)                                                // uses unsigned int to prevent the error of comparing ints to unsigned ints
+            int spaceCount = 0;                                                                                                                   // counts the number of spaces in the string
+            for (unsigned int index = 0; index < line.length(); index++)                                                                          // uses unsigned int to prevent the error of comparing ints to unsigned ints
             {
                 if (line[index] == ' ')
                     spaceCount++;
             }
 
-            if (spaceCount == 2)                                                                                        // equation is only valid if there are three separated pieces
+            if (spaceCount == 2)                                                                                                                  // equation is only valid if there are three separated pieces
             {
                 stringstream ss;
                 ss << line;
                 ss >> firstComplexNumber;
 
-                if (verify(line.substr(0, line.find(' ')), false) && noExtraPeriods(line.substr(0, line.find(' '))))    // verifies the first complex number is valid
+                if (verify(line.substr(0, line.find(' ')), false) && noExtraPeriods(line.substr(0, line.find(' '))))                              // verifies the first complex number is valid
                 {
                     ss >> operand;
-                    line = line.substr(line.find(' ') + 1);                                                             // removes the first complex number from the string
-                    if (verify(line.substr(0, line.find(' ')), true))                                                   // verifies the operand is valid
+                    line = line.substr(line.find(' ') + 1);                                                                                       // removes the first complex number from the string
+                    if (verify(line.substr(0, line.find(' ')), true))                                                                             // verifies the operand is valid
                     {
                         ss >> secondComplexNumber;
-                        line = line.substr(line.find(' ') + 1);                                                         // removes the operand from the string
+                        line = line.substr(line.find(' ') + 1);                                                                                   // removes the operand from the string
 
-                        if (verify(line, false) && noExtraPeriods(line))                                                // verifies the second complex number is valid
+                        if (verify(line, false) && noExtraPeriods(line))                                                                          // verifies the second complex number is valid
                         {
-                            outFile << left << setw(longestEq + 2) << originalLine;                                     // prints the original equation
+                            outFile << left << setw(longestEq + 2) << originalLine;                                                               // prints the original equation
 
-                            outFile << setprecision(2);                                                                 // sets all floating point values to 2 decimal places
+                            outFile << setprecision(2);                                                                                           // sets all floating point values to 2 decimal places
 
                             if (operand == "+")
-                                outFile << (firstComplexNumber + secondComplexNumber);      // addition
+                                outFile << (firstComplexNumber + secondComplexNumber);                                                            // addition
                             else if (operand == "-")
-                                outFile << (firstComplexNumber - secondComplexNumber);      // subtraction
+                                outFile << (firstComplexNumber - secondComplexNumber);                                                            // subtraction
                             else if (operand == "*")
-                                outFile << (firstComplexNumber * secondComplexNumber);      // multiplication
+                                outFile << (firstComplexNumber * secondComplexNumber);                                                            // multiplication
                             else if (operand == "/")
-                                outFile << (firstComplexNumber / secondComplexNumber);      // division
-                            else if (operand == "<")                           // prints true is first complex number is less than second complex number, otherwise false
+                                outFile << (firstComplexNumber / secondComplexNumber);                                                            // division
+                            else if (operand == "<")                                                                                              // prints true is first complex number is less than second complex number, otherwise false
                             {
                                 if (firstComplexNumber < secondComplexNumber)
                                     outFile << "true";
@@ -171,7 +171,7 @@ int main()
                                     outFile << "false";
                             }
 
-                            else if (operand == ">")                           // prints true is first complex number is greater than second complex number, otherwise false
+                            else if (operand == ">")                                                                                              // prints true is first complex number is greater than second complex number, otherwise false
                             {
                                 if (firstComplexNumber > secondComplexNumber)
                                     outFile << "true";
@@ -179,7 +179,7 @@ int main()
                                     outFile << "false";
                             }
 
-                            else if (operand == "=")                           // prints true is first complex number equals second complex number, otherwise false
+                            else if (operand == "=")                                                                                              // prints true is first complex number equals second complex number, otherwise false
                             {
                                 if (firstComplexNumber == secondComplexNumber)
                                     outFile << "true";
@@ -187,7 +187,7 @@ int main()
                                     outFile << "false";
                             }
 
-                            else if (operand == "/=")                           // prints true is first complex number does not equal second complex number, otherwise false
+                            else if (operand == "/=")                                                                                             // prints true is first complex number does not equal second complex number, otherwise false
                             {
                                 if (firstComplexNumber != secondComplexNumber)
                                     outFile << "true";
@@ -202,9 +202,9 @@ int main()
                 }
             }
         }
-        outFile.close();    // Closes the output file
+        outFile.close();                                                                                                                          // Closes the output file
     }
 
-    inFile.close();     // Closes the input file
+    inFile.close();                                                                                                                               // Closes the input file
     return 0;
 }
