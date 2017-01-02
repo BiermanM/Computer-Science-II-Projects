@@ -31,9 +31,9 @@ LinkedList::LinkedList()
 // Return: none
 LinkedList::LinkedList(DoubleLinkNode* n)
 {
-    if (head == nullptr)            // If list is empty, n becomes head
+    if (head == nullptr)                                                                             // If list is empty, n becomes head
         head = n;
-    else                            // Otherwise, n is inserted after head
+    else                                                                                             // Otherwise, n is inserted after head
     {
         n->setNext(head);
         n->setPrev(nullptr);
@@ -102,14 +102,14 @@ ofstream& operator<<(ofstream& outFile, LinkedList& ll)
 // Return: none
 void LinkedList::insert(DoubleLinkNode * n)
 {
-    if (head == nullptr && tail == nullptr) // If list is empty, new
-    {                                       // node becomes both head and tail
+    if (head == nullptr && tail == nullptr)                                                          // If list is empty, new
+    {                                                                                                // node becomes both head and tail
         head = n;
         tail = n;
     }
-    else                                    // Otheriwse, new node is added
-    {                                       // to the end of the list and becomes
-        n->setPrev(tail);                   // the tail
+    else                                                                                             // Otheriwse, new node is added
+    {                                                                                                // to the end of the list and becomes
+        n->setPrev(tail);                                                                            // the tail
         tail->setNext(n);
         tail = n;
     }
@@ -121,23 +121,25 @@ void LinkedList::insert(DoubleLinkNode * n)
 void LinkedList::sortList(string str)
 {
     DoubleLinkNode * current = head;
-    bool isInOrder = LinkedList::inOrder(str);                                                      // Checks if the list is already in order
-    while(!isInOrder)                                                                               // While the list is not in order
+    bool isInOrder = LinkedList::inOrder(str);                                                       // Checks if the list is already in order
+    while(!isInOrder)                                                                                // While the list is not in order
     {
         current = head;
         
         if (str == "area")
         {
-            while(current->getNext() != nullptr && current->getPatrolArea() <= current->getNext()->getPatrolArea()) // Finds a node where the node after it is smaller than it
+            while (current->getNext() != nullptr &&
+                   current->getPatrolArea() <= current->getNext()->getPatrolArea())                  // Finds a node where the node after it is smaller than it
                 current = current->getNext();
         }
         else
         {
-            while(current->getNext() != nullptr && current->getPilotName() <= current->getNext()->getPilotName())   // Finds a node where the node after it is smaller than it
+            while (current->getNext() != nullptr && 
+                   current->getPilotName() <= current->getNext()->getPilotName())                    // Finds a node where the node after it is smaller than it
                 current = current->getNext();
         }
 
-        while(current->getNext() != nullptr && current <= current->getNext())                       // Finds a node where the node after it is smaller than it
+        while (current->getNext() != nullptr && current <= current->getNext())                       // Finds a node where the node after it is smaller than it
             current = current->getNext();
 
         if (current->getNext() != nullptr && ((current->getPatrolArea() > current->getNext()->getPatrolArea() && str == "area") || (current->getPilotName() > current->getNext()->getPilotName() && str == "pilot")))                          // If the two nodes need to be swapped
@@ -167,7 +169,7 @@ void LinkedList::sortList(string str)
                 current->setPrev(current->getNext());
                 current->setNext(nullptr);
                 current->getPrev()->setNext(current);
-                LinkedList::setTail(current);                                                       // Tail is now the swapped node
+                LinkedList::setTail(current);                                                        // Tail is now the swapped node
             }
             else if (current->getPrev() == nullptr && current->getNext()->getNext() == nullptr)      // Swapping two nodes, the two nodes are the only nodes in the list
             {
@@ -175,11 +177,11 @@ void LinkedList::sortList(string str)
                 current->setNext(nullptr);
                 current->getPrev()->setNext(current);
                 current->getPrev()->setPrev(nullptr);
-                LinkedList::setHead(current->getPrev());                                            // Head and tail are switched
+                LinkedList::setHead(current->getPrev());                                             // Head and tail are switched
                 LinkedList::setTail(current);
             }
         }
-        isInOrder = LinkedList::inOrder(str);                                                       // Checks if the list is now in order with the new changes
+        isInOrder = LinkedList::inOrder(str);                                                        // Checks if the list is now in order with the new changes
     }
 }
 
@@ -191,8 +193,8 @@ bool LinkedList::inOrder(string str)
     DoubleLinkNode * current = head;
     while(current->getNext() != nullptr)
     {
-        if (!isGreaterThanOrEqualTo(current->getNext(), current, str))  // if the current node is larger than the
-            return false;                                               // next node, then the list is not in order
+        if (!isGreaterThanOrEqualTo(current->getNext(), current, str))                               // if the current node is larger than the
+            return false;                                                                            // next node, then the list is not in order
         current = current->getNext();
     }
     return true;
@@ -203,10 +205,10 @@ bool LinkedList::inOrder(string str)
 // Return: output file stream
 ofstream& LinkedList::recursivePrint(ofstream& outFile, DoubleLinkNode* n, int columnLength)
 {
-    outFile << fixed << setprecision(2) << left << setw(columnLength)   // All areas are rounded to two decimal places
-         << n->getPilotName() << "\t" << n->getPatrolArea() << endl;    // Prints in the format of "<Name><Tab><Area>"
+    outFile << fixed << setprecision(2) << left << setw(columnLength)                                // All areas are rounded to two decimal places
+         << n->getPilotName() << "\t" << n->getPatrolArea() << endl;                                 // Prints in the format of "<Name><Tab><Area>"
     if (n->getNext() != nullptr)
-        recursivePrint(outFile, n->getNext());                          // Prints the next node until it reaches the end of the list
+        recursivePrint(outFile, n->getNext());                                                       // Prints the next node until it reaches the end of the list
 
     return outFile;
 }
@@ -216,12 +218,12 @@ ofstream& LinkedList::recursivePrint(ofstream& outFile, DoubleLinkNode* n, int c
 // Return: none
 void LinkedList::recursiveDelete(DoubleLinkNode* n)
 {
-    if (n->getNext() != nullptr)            // Finds the tail of the list
+    if (n->getNext() != nullptr)                                                                     // Finds the tail of the list
         recursiveDelete(n->getNext());
 
-    if (n->getPrev() != nullptr)            // Removes the previous node's link to the current node
+    if (n->getPrev() != nullptr)                                                                     // Removes the previous node's link to the current node
         n->getPrev()->setNext(nullptr);
-    delete n;                               // Deletes the node
+    delete n;                                                                                        // Deletes the node
 }
 
 // Checks if the first DoubleLinkNode is greater than the second DoubleLinkNode based on name or area
@@ -229,10 +231,10 @@ void LinkedList::recursiveDelete(DoubleLinkNode* n)
 // Return: boolean
 bool LinkedList::isGreaterThan(DoubleLinkNode* a, DoubleLinkNode* b, string str)
 {
-    if (str == "area")                                      // compares the two nodes by their areas
+    if (str == "area")                                                                               // compares the two nodes by their areas
         return (a->getPatrolArea() > b->getPatrolArea());
 
-    else                                                    // compares the two nodes by their names
+    else                                                                                             // compares the two nodes by their names
         return (a->getPilotName() > b->getPilotName());
 }
 
@@ -241,10 +243,10 @@ bool LinkedList::isGreaterThan(DoubleLinkNode* a, DoubleLinkNode* b, string str)
 // Return: boolean
 bool LinkedList::isGreaterThanOrEqualTo(DoubleLinkNode* a, DoubleLinkNode* b, string str)
 {
-    if (str == "area")                                      // compares the two nodes by their areas
+    if (str == "area")                                                                               // compares the two nodes by their areas
         return (a->getPatrolArea() >= b->getPatrolArea());
 
-    else                                                    // compares the two nodes by their names
+    else                                                                                             // compares the two nodes by their names
         return (a->getPilotName() >= b->getPilotName());
 }
 
@@ -266,7 +268,7 @@ string LinkedList::searchFor(string str)
     if (str.find("0") <= (unsigned) str.length() || str.find("1") <= (unsigned) str.length() || str.find("2") <= (unsigned) str.length() ||
         str.find("3") <= (unsigned) str.length() || str.find("4") <= (unsigned) str.length() || str.find("5") <= (unsigned) str.length() ||
         str.find("6") <= (unsigned) str.length() || str.find("7") <= (unsigned) str.length() || str.find("8") <= (unsigned) str.length() ||
-        str.find("9") <= (unsigned) str.length())           // If the item being searched for is an area
+        str.find("9") <= (unsigned) str.length())                                                    // If the item being searched for is an area
     {
         double num = atof(str.c_str());
         int left = 0;
@@ -330,10 +332,10 @@ string LinkedList::searchFor(string str)
     if (str.find("0") <= (unsigned) str.length() || str.find("1") <= (unsigned) str.length() || str.find("2") <= (unsigned) str.length() ||
         str.find("3") <= (unsigned) str.length() || str.find("4") <= (unsigned) str.length() || str.find("5") <= (unsigned) str.length() ||
         str.find("6") <= (unsigned) str.length() || str.find("7") <= (unsigned) str.length() || str.find("8") <= (unsigned) str.length() ||
-        str.find("9") <= (unsigned) str.length())           // If the item being searched for is an area
+        str.find("9") <= (unsigned) str.length())                                                    // If the item being searched for is an area
     {
         double num = atof(str.c_str());
-        DoubleLinkNode * current = tail;                        // Checks from the tail and works up to the top of the list
+        DoubleLinkNode * current = tail;                                                             // Checks from the tail and works up to the top of the list
         while (current->getPrev() != nullptr)
         {
             if (num == current->getPrev()->getPatrolArea())
@@ -342,9 +344,9 @@ string LinkedList::searchFor(string str)
         }
         return str + " not found";
     }
-    else                                                        // Otherwise, the item being searched for is a name
+    else                                                                                             // Otherwise, the item being searched for is a name
     {
-        DoubleLinkNode * current = tail;                        // Checks from the tail and works up to the top of the list
+        DoubleLinkNode * current = tail;                                                             // Checks from the tail and works up to the top of the list
         while (current->getPrev() != nullptr)
         {
             if (str == current->getPrev()->getPilotName())
@@ -355,4 +357,3 @@ string LinkedList::searchFor(string str)
     }
     */
 }
-
