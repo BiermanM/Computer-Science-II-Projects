@@ -277,6 +277,7 @@ string LinkedList::searchFor(string str)
             right++;
             current = current->getNext();
         }
+        right--;
 
         while (left <= right)
         {
@@ -305,6 +306,7 @@ string LinkedList::searchFor(string str)
             right++;
             current = current->getNext();
         }
+        right--;
 
         while (left <= right)
         {
