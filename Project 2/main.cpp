@@ -45,12 +45,35 @@ bool verify(string str, bool isOperand)
 	}
 }
 
+// finds the length of the longest equation in the complex.txt file (used to determine the spacing of the columns in results.txt)
+// Parameters: ifstream
+// Return: int
+int longestEquation(ifstream& inFile)
+{
+    int count = 0;
+    string line;
+
+    while (!inFile.eof())
+    {
+        getline(inFile, line);
+        if (line.length() > (unsigned) count)
+            count = line.length();
+    }
+
+    inFile.close();
+    inFile.open("complex.txt");
+
+    return count;
+}
+
 int main()
 {
     ifstream inFile("complex.txt");                                                                                     // Opens the input file "complex.txt"
 
     if (inFile)                                                                                                         // Program will end if "complex.txt" cannot be found
     {
+	int longestEq = longestEquation(inFile);
+	
         ofstream outFile("results.txt");                                                                                // Opens the output file "results.txt"
         while (!inFile.eof())                                                                                           // loops until it reaches the end of the file
         {
@@ -83,7 +106,7 @@ int main()
 
                         if (verify(line, false))                                                                        // verifies the second complex number is valid
                         {
-                            outFile << left << setw(25) << originalLine;                                                // prints the original equation
+                            outFile << left << setw(longestEq + 2) << originalLine;                                                // prints the original equation
 
                             outFile << setprecision(2);                                                                 // sets all floating point values to 2 decimal places
 
