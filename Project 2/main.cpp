@@ -66,6 +66,51 @@ int longestEquation(ifstream& inFile)
     return count;
 }
 
+// verifies that there is no more than one period per number in the equation
+// Parameters: string
+// Return: bool
+bool noExtraPeriods(string str)
+{
+    if (str[0] == '-')
+        str = str.substr(1);
+    string strPart1, strPart2;
+    if (str.find('-') < str.length())               // If the real and imaginary numbers are separated by a minus sign
+    {
+        strPart1 = str.substr(0, str.find('-'));
+        strPart2 = str.substr(str.find('-') + 1);
+    }
+    else if (str.find('+') < str.length())          // If the real and imaginary numbers are separated by a plus sign
+    {
+        strPart1 = str.substr(0, str.find('+'));
+        strPart2 = str.substr(str.find('+') + 1);
+    }
+    else                                            // If there is only a real number or only an imaginary number
+    {
+        strPart1 = str;
+        strPart2 = "";
+    }
+
+    int periodCount1 = 0;                                               // counts the number of periods in the string
+    for (unsigned int index = 0; index < strPart1.length(); index++)    // uses unsigned int to prevent the error of comparing ints to unsigned ints
+    {
+        if (strPart1[index] == '.')
+            periodCount1++;
+    }
+
+    int periodCount2 = 0;                                               // counts the number of periods in the string
+    for (unsigned int index = 0; index < strPart2.length(); index++)    // uses unsigned int to prevent the error of comparing ints to unsigned ints
+    {
+        if (strPart2[index] == '.')
+            periodCount2++;
+    }
+
+
+    if (periodCount1 < 2 && periodCount2 < 2)
+        return true;
+    else
+        return false;
+}
+
 int main()
 {
     ifstream inFile("complex.txt");                                                                                     // Opens the input file "complex.txt"
@@ -95,18 +140,18 @@ int main()
                 ss << line;
                 ss >> firstComplexNumber;
 
-                if (verify(line.substr(0, line.find(' ')), false))                                                      // verifies the first complex number is valid
+                if (verify(line.substr(0, line.find(' ')), false) && noExtraPeriods(line.substr(0, line.find(' '))))    // verifies the first complex number is valid
                 {
                     ss >> operand;
                     line = line.substr(line.find(' ') + 1);                                                             // removes the first complex number from the string
-                    if (verify(line.substr(0, line.find(' ')), true ))                                                  // verifies the operand is valid
+                    if (verify(line.substr(0, line.find(' ')), true))                                                   // verifies the operand is valid
                     {
                         ss >> secondComplexNumber;
                         line = line.substr(line.find(' ') + 1);                                                         // removes the operand from the string
 
-                        if (verify(line, false))                                                                        // verifies the second complex number is valid
+                        if (verify(line, false) && noExtraPeriods(line))                                                // verifies the second complex number is valid
                         {
-                            outFile << left << setw(longestEq + 2) << originalLine;                                                // prints the original equation
+                            outFile << left << setw(longestEq + 2) << originalLine;                                     // prints the original equation
 
                             outFile << setprecision(2);                                                                 // sets all floating point values to 2 decimal places
 
