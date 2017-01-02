@@ -118,7 +118,7 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber& num) const
     ComplexNumber quotient;
     double denominator;
 
-    denominator = (num.realNumberComponent * num.realNumberComponent) - (num.imaginaryNumberComponent * num.imaginaryNumberComponent);
+    denominator = (num.realNumberComponent * num.realNumberComponent) + (num.imaginaryNumberComponent * num.imaginaryNumberComponent);
 
     quotient.realNumberComponent = realNumberComponent * num.realNumberComponent;
     quotient.imaginaryNumberComponent = realNumberComponent * num.imaginaryNumberComponent * -1;
