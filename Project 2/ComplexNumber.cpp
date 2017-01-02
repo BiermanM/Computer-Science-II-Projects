@@ -76,8 +76,8 @@ ComplexNumber ComplexNumber::operator+(const ComplexNumber& num) const
 {
     ComplexNumber sum;
 
-    sum.realNumberComponent = realNumberComponent + num.realNumberComponent;                        // real = real1 + real2
-    sum.imaginaryNumberComponent = imaginaryNumberComponent + num.imaginaryNumberComponent;         // imaginary = imaginary1 + imaginary2
+    sum.realNumberComponent = realNumberComponent + num.realNumberComponent;                                                                                        // real = real1 + real2
+    sum.imaginaryNumberComponent = imaginaryNumberComponent + num.imaginaryNumberComponent;                                                                         // imaginary = imaginary1 + imaginary2
 
     return sum;
 }
@@ -89,8 +89,8 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber& num) const
 {
     ComplexNumber difference;
 
-    difference.realNumberComponent = realNumberComponent - num.realNumberComponent;                 // real = real1 - real2
-    difference.imaginaryNumberComponent = imaginaryNumberComponent - num.imaginaryNumberComponent;  // imaginary = imaginary1 - imaginary2
+    difference.realNumberComponent = realNumberComponent - num.realNumberComponent;                                                                                 // real = real1 - real2
+    difference.imaginaryNumberComponent = imaginaryNumberComponent - num.imaginaryNumberComponent;                                                                  // imaginary = imaginary1 - imaginary2
 
     return difference;
 }
@@ -104,8 +104,8 @@ ComplexNumber ComplexNumber::operator*(const ComplexNumber& num) const
 
     product.realNumberComponent = realNumberComponent * num.realNumberComponent;
     product.imaginaryNumberComponent = realNumberComponent * num.imaginaryNumberComponent;
-    product.imaginaryNumberComponent += imaginaryNumberComponent * num.realNumberComponent;         // imaginary = (real1 * imaginary2) + (imaginary1 * real2)
-    product.realNumberComponent -= imaginaryNumberComponent * num.imaginaryNumberComponent;         // real = (real1 * real2) - (imaginary1 * imaginary2)
+    product.imaginaryNumberComponent += imaginaryNumberComponent * num.realNumberComponent;                                                                         // imaginary = (real1 * imaginary2) + (imaginary1 * real2)
+    product.realNumberComponent -= imaginaryNumberComponent * num.imaginaryNumberComponent;                                                                         // real = (real1 * real2) - (imaginary1 * imaginary2)
 
     return product;
 }
@@ -125,8 +125,8 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber& num) const
     quotient.imaginaryNumberComponent += imaginaryNumberComponent * num.realNumberComponent;
     quotient.realNumberComponent += imaginaryNumberComponent * num.imaginaryNumberComponent;
 
-    quotient.realNumberComponent /= denominator;                                                        // real = ((real1 * real2) + (imarginary1 * imaginary2)) / (real2^2 * imaginary2^2)
-    quotient.imaginaryNumberComponent /= denominator;                                                   // imaginary = ((imaginary1 * real2) - (real1 * imaginary2)) / (real2^2 * imaginary2^2)
+    quotient.realNumberComponent /= denominator;                                                                                                                    // real = ((real1 * real2) + (imarginary1 * imaginary2)) / (real2^2 * imaginary2^2)
+    quotient.imaginaryNumberComponent /= denominator;                                                                                                               // imaginary = ((imaginary1 * real2) - (real1 * imaginary2)) / (real2^2 * imaginary2^2)
 
     return quotient;
 }
@@ -158,7 +158,7 @@ bool ComplexNumber::operator>(const ComplexNumber& num) const
 // Return: boolean
 bool ComplexNumber::operator==(const ComplexNumber& num) const
 {
-    if (realNumberComponent == num.realNumberComponent && imaginaryNumberComponent == num.imaginaryNumberComponent)         // real1 = real2 and imaginary1 = imaginary2
+    if (realNumberComponent == num.realNumberComponent && imaginaryNumberComponent == num.imaginaryNumberComponent)                                                 // real1 = real2 and imaginary1 = imaginary2
         return true;
     else
         return false;
@@ -169,7 +169,7 @@ bool ComplexNumber::operator==(const ComplexNumber& num) const
 // Return: boolean
 bool ComplexNumber::operator!=(const ComplexNumber& num) const
 {
-    if (realNumberComponent == num.realNumberComponent && imaginaryNumberComponent == num.imaginaryNumberComponent)         // real1 != real2 or imaginary1 != imaginary2
+    if (realNumberComponent == num.realNumberComponent && imaginaryNumberComponent == num.imaginaryNumberComponent)                                                 // real1 != real2 or imaginary1 != imaginary2
         return false;
     else
         return true;
@@ -180,31 +180,31 @@ bool ComplexNumber::operator!=(const ComplexNumber& num) const
 // Return: stream insertion
 ostream& operator<<(ostream& cout, const ComplexNumber& num)
 {
-    cout << setprecision(2) << fixed;                                   // sets all floating point values to 2 decimal places
+    cout << setprecision(2) << fixed;                                                                                                                               // sets all floating point values to 2 decimal places
 
     if (num.getRealNumberComponent() == 0)
     {
         if (num.getImaginaryNumberComponent() == 0)
-            cout << "0";                                                // 0
+            cout << "0";                                                                                                                                            // 0
         else
         {
             if (num.getImaginaryNumberComponent() == 1)
-                cout << "i";                                            // i
+                cout << "i";                                                                                                                                        // i
             else if (num.getImaginaryNumberComponent() == -1)
-                cout << "-i";                                           // -i
+                cout << "-i";                                                                                                                                       // -i
             else
-            {                                                                                   // bi or -bi
+            {                                                                                                                                                       // bi or -bi
                 if (num.getImaginaryNumberComponent() == floor(num.getImaginaryNumberComponent()))
-                    cout << (int) num.getImaginaryNumberComponent() << "i";                     // if b is a whole number, don't display .00
+                    cout << (int) num.getImaginaryNumberComponent() << "i";                                                                                         // if b is a whole number, don't display .00
                 else
                     cout << num.getImaginaryNumberComponent() << "i";
             }
         }
     }
     else
-    {                                                                    // a or -a
+    {                                                                                                                                                               // a or -a
         if (num.getRealNumberComponent() == floor(num.getRealNumberComponent()))
-            cout << (int) num.getRealNumberComponent();                                         // if a is a whole number, don't display .00
+            cout << (int) num.getRealNumberComponent();                                                                                                             // if a is a whole number, don't display .00
         else
             cout << num.getRealNumberComponent();
         
@@ -212,13 +212,13 @@ ostream& operator<<(ostream& cout, const ComplexNumber& num)
             cout << "+";
 
         if (num.getImaginaryNumberComponent() == -1)
-            cout << "-i";                                               // a-i or -a-i
+            cout << "-i";                                                                                                                                           // a-i or -a-i
         else if (num.getImaginaryNumberComponent() == 1)
-            cout << "i";                                                // a+i or -a+i
+            cout << "i";                                                                                                                                            // a+i or -a+i
         else if (num.getImaginaryNumberComponent() != 0)
-        {                                                                                       // a+bi or -a+bi
+        {                                                                                                                                                           // a+bi or -a+bi
             if (num.getImaginaryNumberComponent() == floor(num.getImaginaryNumberComponent()))
-                cout << (int) num.getImaginaryNumberComponent() << "i";                         // if b is a whole number, don't display .00
+                cout << (int) num.getImaginaryNumberComponent() << "i";                                                                                             // if b is a whole number, don't display .00
             else
                 cout << num.getImaginaryNumberComponent() << "i";
         }
@@ -234,34 +234,34 @@ istream& operator>>(istream& cin, ComplexNumber& num)
     string str;
     cin >> str;
 
-    if (str.find('i') > str.length())                                                           // if only a real number
+    if (str.find('i') > str.length())                                                                                                                               // if only a real number
     {
-        num.setRealNumberComponent(atof(str.c_str()));                                          // real number component: a or -a
-        num.setImaginaryNumberComponent(0);                                                     // imaginary number component: 0
+        num.setRealNumberComponent(atof(str.c_str()));                                                                                                              // real number component: a or -a
+        num.setImaginaryNumberComponent(0);                                                                                                                         // imaginary number component: 0
     }
 
-    else if (str.find('+', 1) < str.length() || str.find('-', 1) < str.length())                // if only a mixed number
+    else if (str.find('+', 1) < str.length() || str.find('-', 1) < str.length())                                                                                    // if only a mixed number
     {
         int indexOfPlusMinus;
         if (str.find('+', 1) < str.length())
         {
             indexOfPlusMinus = str.find('+', 1);
-            num.setImaginaryNumberComponent(atof(str.substr(indexOfPlusMinus + 1).c_str()));    // imaginary number component: b
+            num.setImaginaryNumberComponent(atof(str.substr(indexOfPlusMinus + 1).c_str()));                                                                        // imaginary number component: b
         }
 
         else
         {
             indexOfPlusMinus = str.find('-', 1);
-            num.setImaginaryNumberComponent(atof(str.substr(indexOfPlusMinus).c_str()));        // imaginary number component: -b
+            num.setImaginaryNumberComponent(atof(str.substr(indexOfPlusMinus).c_str()));                                                                            // imaginary number component: -b
         }
 
-        num.setRealNumberComponent(atof(str.substr(0, indexOfPlusMinus).c_str()));              // real number component: a
+        num.setRealNumberComponent(atof(str.substr(0, indexOfPlusMinus).c_str()));                                                                                  // real number component: a
     }
 
-    else                                                                                        // if only an imaginary number
+    else                                                                                                                                                            // if only an imaginary number
     {
-        num.setImaginaryNumberComponent(atof(str.substr(0, str.find('i')).c_str()));            // imaginary number component: b or -b
-        num.setRealNumberComponent(0);                                                          // real number component: 0
+        num.setImaginaryNumberComponent(atof(str.substr(0, str.find('i')).c_str()));                                                                                // imaginary number component: b or -b
+        num.setRealNumberComponent(0);                                                                                                                              // real number component: 0
     }
 
     return cin;
