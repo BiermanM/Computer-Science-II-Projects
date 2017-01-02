@@ -258,6 +258,13 @@ int main()
             {
                 if (!getCommandType(line))                                                                              // If command is a search
                     outFile1 << lList.searchFor(line) << endl;                                                          // Output result to results.txt
+                else
+                {
+                    if (line.find("area") < line.length())
+                        lList.sortList("area");
+                    else
+                        lList.sortList("pilot");
+                }
             }
         }
         outFile1.close();                                                                                               // Close output file
