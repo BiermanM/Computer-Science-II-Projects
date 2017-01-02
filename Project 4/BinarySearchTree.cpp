@@ -25,7 +25,7 @@ BinarySearchTree::BinarySearchTree()
 // Parameters: Node
 BinarySearchTree::BinarySearchTree(Node * n)
 {
-    root = n;                               // sets node from parameter to root
+    root = n;                                                                                                   // sets node from parameter to root
 }
 
 // Copy constructor
@@ -39,7 +39,7 @@ BinarySearchTree::BinarySearchTree(BinarySearchTree& bst)
 // Parameters: none
 BinarySearchTree::~BinarySearchTree()
 {
-    BinarySearchTree::recursiveDelete(root);    // calls the function to recursively delete the tree
+    BinarySearchTree::recursiveDelete(root);                                                                    // calls the function to recursively delete the tree
 }
 
 // Recursive destructor
@@ -47,8 +47,8 @@ BinarySearchTree::~BinarySearchTree()
 // Return: none
 void BinarySearchTree::recursiveDelete(Node * n)
 {
-    if (n != nullptr)                                       // postorder traversal
-    {                                                       // starts deleting at leftmost leaf in tree
+    if (n != nullptr)                                                                                           // postorder traversal
+    {                                                                                                           // starts deleting at leftmost leaf in tree
         BinarySearchTree::recursiveDelete(n->getLeft());
         BinarySearchTree::recursiveDelete(n->getRight());
         delete n;
@@ -77,22 +77,22 @@ void BinarySearchTree::setRoot(Node * n)
 // Return: none
 void BinarySearchTree::insertNode(int coeff, int exp, Node * current)
 {
-    if (root == nullptr)                                                        // if tree is empty
+    if (root == nullptr)                                                                                        // if tree is empty
         root = new Node(coeff, exp);
-    else if (exp == current->getExponent())                                     // if new node has same exponent as current node
-        current->setCoefficient(current->getCoefficient() + coeff);             // combine coefficients
-     else if (exp < current->getExponent() && current->getLeft() == nullptr)    // if new node has smaller exponent than current
-        current->setLeft(new Node(coeff, exp));                                 // but current has no left tree, set new node as
-                                                                                // left tree
-    else if (exp > current->getExponent() && current->getRight() == nullptr)    // if new node has larger exponent than current
-        current->setRight(new Node(coeff, exp));                                // but current has no right tree, set new node as
-                                                                                // right tree
-    else if (exp < current->getExponent())                                      // if new node has smaller exponent than current
-        BinarySearchTree::insertNode(coeff, exp, current->getLeft());           // and current has a left tree, set current to
-                                                                                // left tree
-    else                                                                        // if new node has larger exponent than current
-        BinarySearchTree::insertNode(coeff, exp, current->getRight());          // and current has a right tree, set current to
-                                                                                // right tree
+    else if (exp == current->getExponent())                                                                     // if new node has same exponent as current node
+        current->setCoefficient(current->getCoefficient() + coeff);                                             // combine coefficients
+     else if (exp < current->getExponent() && current->getLeft() == nullptr)                                    // if new node has smaller exponent than current
+        current->setLeft(new Node(coeff, exp));                                                                 // but current has no left tree, set new node as
+                                                                                                                // left tree
+    else if (exp > current->getExponent() && current->getRight() == nullptr)                                    // if new node has larger exponent than current
+        current->setRight(new Node(coeff, exp));                                                                // but current has no right tree, set new node as
+                                                                                                                // right tree
+    else if (exp < current->getExponent())                                                                      // if new node has smaller exponent than current
+        BinarySearchTree::insertNode(coeff, exp, current->getLeft());                                           // and current has a left tree, set current to
+                                                                                                                // left tree
+    else                                                                                                        // if new node has larger exponent than current
+        BinarySearchTree::insertNode(coeff, exp, current->getRight());                                          // and current has a right tree, set current to
+                                                                                                                // right tree
 }
 
 // Converts a double to a string
@@ -111,16 +111,16 @@ string doubleToString(double d)
 string getNewCoeff(int numerator, int denominator)
 {
     string s = "(";
-    int tempNum = numerator;                            // save the original numerator
-    int tempDen = denominator;                          // save the original denominator
-    while (true)                                        // finds the greatest common divisor
+    int tempNum = numerator;                                                                                    // save the original numerator
+    int tempDen = denominator;                                                                                  // save the original denominator
+    while (true)                                                                                                // finds the greatest common divisor
     {
         tempNum %= tempDen;
         if (tempNum == 0)
         {
             numerator /= tempDen;
             denominator /= tempDen;
-            s += doubleToString(numerator) + "/"        // puts number back into fraction form
+            s += doubleToString(numerator) + "/"                                                                // puts number back into fraction form
               + doubleToString(denominator) + ")";
             break;
         }
@@ -129,25 +129,25 @@ string getNewCoeff(int numerator, int denominator)
         {
             numerator /= tempNum;
             denominator /= tempNum;
-            s += doubleToString(numerator) + "/"        // puts number back into fraction form
+            s += doubleToString(numerator) + "/"                                                                // puts number back into fraction form
               + doubleToString(denominator) + ")";
             break;
         }
     }
 
-    if (numerator == 0)                                 // fraction is 0 if numerator is 0
+    if (numerator == 0)                                                                                         // fraction is 0 if numerator is 0
         return "0";
-    else if (numerator == (denominator * -1))           // if numerator is the same as the
-        return "-1";                                    // opposite of the denominator, the
-                                                        // fraction is -1
-    else if (denominator == 1)                          // if number is over 1, fraction is
-        return doubleToString(numerator);               // the numerator
-    else if (denominator == -1)                         // if number is over -1, fraction is
-        return doubleToString(numerator * -1);          // the opposite of the numerator
-    else if (numerator == denominator)                  // if the numerator and denominator
-        return "1";                                     // are the same, fraction is 1
-    else                                                // if fraction doesn't need to be
-        return s;                                       // modified, fraction stays the same
+    else if (numerator == (denominator * -1))                                                                   // if numerator is the same as the
+        return "-1";                                                                                            // opposite of the denominator, the
+                                                                                                                // fraction is -1
+    else if (denominator == 1)                                                                                  // if number is over 1, fraction is
+        return doubleToString(numerator);                                                                       // the numerator
+    else if (denominator == -1)                                                                                 // if number is over -1, fraction is
+        return doubleToString(numerator * -1);                                                                  // the opposite of the numerator
+    else if (numerator == denominator)                                                                          // if the numerator and denominator
+        return "1";                                                                                             // are the same, fraction is 1
+    else                                                                                                        // if fraction doesn't need to be
+        return s;                                                                                               // modified, fraction stays the same
 }
 
 // Find anti-derivatives of trig functions
@@ -155,51 +155,51 @@ string getNewCoeff(int numerator, int denominator)
 // Return: string
 string BinarySearchTree::appendTrig(string original, string trigList)
 {
-    if (trigList == "")                                                     // if no trig functions in the equation
+    if (trigList == "")                                                                                         // if no trig functions in the equation
         return original;
-    else                                                                    // if equation has trig functions
+    else                                                                                                        // if equation has trig functions
     {
         string result;
         while (trigList != "")
         {
             string temp = trigList.substr(0, trigList.find(';'));
 
-            int coeff = atoi(temp.substr(0, temp.find(',')).c_str());       // coeff is first item in list
+            int coeff = atoi(temp.substr(0, temp.find(',')).c_str());                                           // coeff is first item in list
             temp = temp.substr(temp.find(',') + 1);
-            int insideCoeff = atoi(temp.substr(0, temp.find(',')).c_str()); // insideCoeff is second item in list
+            int insideCoeff = atoi(temp.substr(0, temp.find(',')).c_str());                                     // insideCoeff is second item in list
             temp = temp.substr(temp.find(',') + 1);
-            string trig = temp;                                             // trig is third item in list
+            string trig = temp;                                                                                 // trig is third item in list
             temp = "";
 
-            if (trig == "sin")                                              // anti-derivate of sine is -cosine
+            if (trig == "sin")                                                                                  // anti-derivate of sine is -cosine
                 result += getNewCoeff(coeff * -1, insideCoeff) + "cos " + doubleToString(insideCoeff) + "x + ";
-            else if (trig == "cos")                                         // anti-derivative of cosine is sine
+            else if (trig == "cos")                                                                             // anti-derivative of cosine is sine
                 result += getNewCoeff(coeff, insideCoeff) + "sin " + doubleToString(insideCoeff) + "x + ";
-            else                                                            // anti-derivative of secant^2 is tangent
+            else                                                                                                // anti-derivative of secant^2 is tangent
                 result += getNewCoeff(coeff, insideCoeff) + "tan " + doubleToString(insideCoeff) + "x + ";
 
-            if (trigList.find(';') > trigList.length())                      // if no other parts to the equation
-                trigList = "";                                               // after current part, end loop
+            if (trigList.find(';') > trigList.length())                                                         // if no other parts to the equation
+                trigList = "";                                                                                  // after current part, end loop
             else
-                trigList = trigList.substr(trigList.find(';') + 1);          // remove current part from equation
+                trigList = trigList.substr(trigList.find(';') + 1);                                             // remove current part from equation
         }
 
-        result = original.substr(0, original.find('C')) + result + "C";     // result is now original list, trig list, and + C
+        result = original.substr(0, original.find('C')) + result + "C";                                         // result is now original list, trig list, and + C
 
         for (unsigned int x = 0; x < result.length(); x++)
         {
-            if (result.substr(x, 2) == "/-")                                     // moves negative to outside the coefficient if it is
-            {                                                                    // part of the denominator
+            if (result.substr(x, 2) == "/-")                                                                    // moves negative to outside the coefficient if it is
+            {                                                                                                   // part of the denominator
                 result = result.substr(0, x).substr(0, result.substr(0, x).find_last_of('('))
                   + "-(" + result.substr(result.substr(0, x).find_last_of('(') + 1, x - result.substr(0, x).find_last_of('(') - 1)
                   + "/" + result.substr(x + 2);
                 x = 0;
             }
-            if (x < result.length() - 1 && (result.substr(x, 2) == "1c"         // changes 1x to x, 1sin to sin, 1cos to cos, 1tan to tan
+            if (x < result.length() - 1 && (result.substr(x, 2) == "1c"                                         // changes 1x to x, 1sin to sin, 1cos to cos, 1tan to tan
                 || result.substr(x, 2) == "1s" || result.substr(x, 2) == "1x"
                 || result.substr(x, 2) == "1t"))
                 result = result.substr(0, x) + result.substr(x + 1);
-            if (x < result.length() - 2 && result.substr(x, 3) == "+ -")        // changes + -<part> to - <part>
+            if (x < result.length() - 2 && result.substr(x, 3) == "+ -")                                        // changes + -<part> to - <part>
                 result = result.substr(0, x) + "- " + result.substr(x + 3);
         }
 
@@ -212,14 +212,14 @@ string BinarySearchTree::appendTrig(string original, string trigList)
 // Return: string
 string BinarySearchTree::inorderTraversal(Node* n, string str)
 {
-    if (n != nullptr)                                                               // inorder traversal
-    {                                                                               // gets parts of equation from greatest to least exponent
+    if (n != nullptr)                                                                                           // inorder traversal
+    {                                                                                                           // gets parts of equation from greatest to least exponent
         str = inorderTraversal(n->getRight(), str);
 
-        string coeff = getNewCoeff(n->getCoefficient(), n->getExponent() + 1);      // simplifies the coefficient if it's a fraction
-        if (coeff == "1")                                                           // changes 1x to x
+        string coeff = getNewCoeff(n->getCoefficient(), n->getExponent() + 1);                                  // simplifies the coefficient if it's a fraction
+        if (coeff == "1")                                                                                       // changes 1x to x
             str += "x^" + doubleToString(n->getExponent() + 1) + " + ";
-        else if (coeff != "0")                                                      // if coefficient is 0, don't add part to equation
+        else if (coeff != "0")                                                                                  // if coefficient is 0, don't add part to equation
             str += coeff + "x^" + doubleToString(n->getExponent() + 1) + " + ";
 
         str = inorderTraversal(n->getLeft(), str);
